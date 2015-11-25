@@ -31,8 +31,8 @@
     "yosay": "1.1.0"
   },
   "devDependencies": {
-    "yeoman-assert": "2.1.0",
-    "mocha": "*"
+    "mocha": "*",
+    "yeoman-assert": "2.1.0"
   },
   "repository": "mirceaalexandru/generator-seneca-redis"
 }

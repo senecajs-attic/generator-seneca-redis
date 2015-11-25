@@ -1,19 +1,30 @@
 'use strict';
 
+var MongoClient = require('mongodb').MongoClient
+var m_db
+var url = require('./options.json').db_url
+
+
 var seneca = require('seneca')();
 
 seneca
   .use('redis-queue-transport')
 
-  .add('role:a,cmd:foo', function (args, done) {
-    done(null, {bar: args.zed + 1, when: Date.now()})
+  .add('role:db,cmd:save', function (args, done) {
+    var collection = m_db.collection('documents');
+    collection.insert({zed: args.zed}, done)
   })
 
-  .add('role:b,cmd:foo', function (args, done) {
-    done(null, {bar: args.zed + 1, when: Date.now()})
-  })
+  .listen({type: 'redis-queue', pin: 'role:db,cmd:*'})
 
-  .act('role:a,cmd:foo,zed:0', console.log)
 
-  .listen({type: 'redis-queue', pin: 'role:a,cmd:*'})
-  .listen({type: 'redis-queue', pin: 'role:b,cmd:*'})
+// Connection URL 
+
+MongoClient.connect(url, function(err, db) {
+  if (err){
+    throw new Error('cannot connect to Mongo')
+  }
+
+  m_db = db
+  console.log("Connected correctly to server");
+});

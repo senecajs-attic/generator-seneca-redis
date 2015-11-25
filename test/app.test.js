@@ -13,7 +13,8 @@ describe('generator-redis:app', function () {
     assert.file([
       'package.json',
       'service.js',
-      'README.md'
+      'README.md',
+      'options.json'
     ]);
   });
 });

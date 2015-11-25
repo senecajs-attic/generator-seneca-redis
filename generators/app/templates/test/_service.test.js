@@ -16,16 +16,17 @@ suite('basic test', function () {
 
     seneca
       .use('redis-queue-transport')
-      .client({type: 'redis-queue', pin: 'role:a,cmd:*'})
-      .client({type: 'redis-queue', pin: 'role:b,cmd:*'})
-    done()
+      .client({type: 'redis-queue', pin: 'role:db,cmd:*'})
+    setTimeout(done, 2 * 1000)
   })
 
-  test('test service', function (done) {
-    seneca.act('role:a,cmd:foo,zed:10', function (err, data) {
+  test('test save service', function (done) {
+    seneca.act('role:db,cmd:save,zed:10', function (err, data) {
+
       Assert(!err)
       Assert(data)
-      Assert.equal(11, data.bar)
+      Assert(data.result)
+      Assert(data.result.ok)
       done()
     })
   })

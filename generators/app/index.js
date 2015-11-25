@@ -66,6 +66,10 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('Dockerfile')
       );
       this.fs.copy(
+        this.templatePath('_options.json'),
+        this.destinationPath('options.json')
+      );
+      this.fs.copy(
         this.templatePath('_jshintrc'),
         this.destinationPath('.jshintrc')
       );

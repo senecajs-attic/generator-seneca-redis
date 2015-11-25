@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "seneca": "^0.7.1",
+    "mongodb": "2.0.49",
     "seneca-redis-queue-transport": "0.1.1",
     "jshint": "2.8.0"
   },
@@ -24,9 +25,9 @@
   "scripts": {
     "lint": "jshint **/*.js",
     "test": "lab test/*.test.js -r console -v -m 3000",
-    "coverage": "istanbul cover tape test/*Test.js && open ./coverage/lcov-report/index.html",
-    "coverage-check": "istanbul cover tape test/*Test.js && istanbul check-coverage",
-    "commit-check": "jshint **/*.js && istanbul cover tape test/*Test.js && istanbul check-coverage"
+    "coverage": "./node_modules/.bin/istanbul cover test/*.test.js && open ./coverage/lcov-report/index.html",
+    "coverage-check": "istanbul cover test/*.test.js && ./node_modules/.bin/istanbul check-coverage",
+    "commit-check": "jshint **/*.js && ./node_modules/.bin/istanbul cover test/*.test.js && ./node_modules/.bin/istanbul check-coverage"
   },
   "pre-commit": [
     "commit-check"
@@ -34,6 +35,7 @@
   "devDependencies": {
     "pre-commit": "^1.1.1",
     "chai": "3.4.1",
+    "istanbul": "0.4.1",
     "lab": "6.x.x"
   }
 }
