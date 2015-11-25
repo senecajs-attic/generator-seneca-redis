@@ -4,7 +4,7 @@
   "description": "Yeoman generator for Seneca Redis transport project",
   "main": "app/index.js",
   "scripts": {
-    "test": "lab test/*.test.js -r console -v -L -m 3000 -t 80"
+    "test": "mocha"
   },
   "files": [
     "generators"
@@ -26,10 +26,13 @@
     "chalk": "1.1.1",
     "deep-extend": "0.4.0",
     "inquirer-npm-name": "1.0.0",
-    "lab": "7.3.0",
     "lodash": "3.10.1",
     "yeoman-generator": "0.21.1",
     "yosay": "1.1.0"
+  },
+  "devDependencies": {
+    "yeoman-assert": "2.1.0",
+    "mocha": "*"
   },
   "repository": "mirceaalexandru/generator-seneca-redis"
 }
