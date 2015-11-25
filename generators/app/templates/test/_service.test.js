@@ -10,17 +10,24 @@ var test = lab.test
 var seneca = require('seneca')({log: 'print'})
 
 suite('basic test', function () {
-  before( {}, function(done){
+  before({}, function (done) {
+
+    require('./../service.js')
+
     seneca
       .use('redis-queue-transport')
       .client({type: 'redis-queue', pin: 'role:a,cmd:*'})
       .client({type: 'redis-queue', pin: 'role:b,cmd:*'})
     done()
-  } )
+  })
 
-  test('test service', function(done){
-    seneca.act('role:a,cmd:foo,zed:10', console.log)
-    seneca.act('role:b,cmd:foo,zed:20', console.log)
+  test('test service', function (done) {
+    seneca.act('role:a,cmd:foo,zed:10', function (err, data) {
+      Assert(!err)
+      Assert(data)
+      Assert.equal(11, data.bar)
+      done()
+    })
   })
 })
 
