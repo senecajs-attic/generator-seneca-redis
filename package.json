@@ -6,7 +6,7 @@
   "scripts": {
     "test": "lab test/*.test.js -r console -v -L -m 3000 -t 80"
   },
-  files: [
+  "files": [
     "index.js",
     "package.json",
     "Readme.md",
@@ -20,5 +20,11 @@
     "generator"
   ],
   "author": "Mircea Alexandru <mircea.alexandru@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "1.1.1",
+    "lab": "7.3.0",
+    "yeoman-generator": "0.21.1",
+    "yosay": "1.1.0"
+  }
 }
