@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "jshint **/*.js",
-    "test": "jshint **/*.js && tape test/*Test.js",
+    "test": "lab test/*.test.js -r console -v -m 3000",
     "coverage": "istanbul cover tape test/*Test.js && open ./coverage/lcov-report/index.html",
     "coverage-check": "istanbul cover tape test/*Test.js && istanbul check-coverage",
     "commit-check": "jshint **/*.js && istanbul cover tape test/*Test.js && istanbul check-coverage"
@@ -33,7 +33,8 @@
   ],
   "devDependencies": {
     "pre-commit": "^1.1.1",
-    "tape": "^4.2.0"
+    "chai": "3.4.1",
+    "lab": "6.x.x"
   }
 }
 
